@@ -1,19 +1,19 @@
 
-OBJS	= main.o
-SOURCE	= main.cpp
+OBJS	= main.o Person.o Simulation.o
+SOURCE	= Person.cpp Simulation.cpp main.cpp
 HEADER	= 
 OUT	= main
 CC	 = g++-11
-FLAGS	 = -g -Wall -std=c++11
-LFLAGS	 = 
+FLAGS = -g -Wall -Werror -std=c++11
+CFLAGS =# `pkg-config --cflags --libs gtkmm-2.4`
+#LFLAGS	 ='pkg-config --cflags --libs gtk+-2.0'
 
 all: $(OBJS)
-	$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
-	rm -rf $(OBJS)
+	$(CC) $(OBJS) $(FLAGS) -o $(OUT) $(CFLAGS)
+	rm -rf $(OBJS) *.o
 
-main.o: main.cpp
-	$(CC) -c $(FLAGS) main.cpp
-
+$(OBJS): $(SOURCE)
+	$(CC) -c $(FLAGS) $(CFLAGS) $(SOURCE)
 
 clean:
-	rm -f $(OBJS) $(OUT) *.csv
+	rm -f $(OBJS) $(OUT) *.csv *.o

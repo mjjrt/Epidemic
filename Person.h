@@ -11,8 +11,11 @@ struct Person
     bool immune; // 1 if true;
 
     // Position
-    double x;
-    double y;
+    double xpos;
+    double ypos;
+
+    //void checkStatus();
+    void move();
 };
 
 
