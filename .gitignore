@@ -37,4 +37,5 @@ main
 
 # Data Files
 *.csv
+*.json
 

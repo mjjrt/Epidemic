@@ -5,7 +5,8 @@
 
 #include "Simulation.h"
 
-#define RISK_DIST 1.5
+#define RISK_DIST 1.5   // Distance on which infection is possible
+#define INF_RISK 80    // Risk of infection on contact, e.g. 30 = 30% Risk
 
 
 void Simulation::RunSimulation()
@@ -34,6 +35,7 @@ void Simulation::RunSimulation()
 
 void Simulation::CheckProximity(Person &p, size_t index)
 {
+    srand(time(0));
     for (size_t i = 0; i < people.size(); i++)
     {
         if (i != index)
@@ -44,7 +46,8 @@ void Simulation::CheckProximity(Person &p, size_t index)
             
             if (dist <= RISK_DIST && people[i].infected == true)
             {
-                if(){
+                double infRisk = rand()%100; // Risk of Infection for specific Contact
+                if(infRisk >= INF_RISK){
                     p.infected = true;
                     NumInfected++;
                 }
