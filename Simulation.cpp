@@ -44,7 +44,7 @@ void Simulation::CheckProximity(Person &p, size_t index)
             
             if (dist <= RISK_DIST && people[i].infected == true)
             {
-                if(rand()%10 <= 10){
+                if(){
                     p.infected = true;
                     NumInfected++;
                 }
