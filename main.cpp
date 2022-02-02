@@ -7,7 +7,8 @@
 
 int main (int argc, char *argv[])
 {
-    Simulation sim;//(10, 100);
+    Simulation sim(100, 1000);
     sim.RunSimulation();
-    return 0;
+
+    return EXIT_SUCCESS;
 }

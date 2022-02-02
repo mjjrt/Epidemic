@@ -1,9 +1,13 @@
+#ifndef __IOSTREAM_H
 #include <iostream>
+#endif
 
 #ifndef PERSON_CPP_
 #define PERSON_CPP_
 
 #include <random>
+#include <ctime>
+
 #include "Person.h"
 
 #define SIM_HEIGHT 1000
@@ -12,10 +16,8 @@
 
 double GetRandomStep()
 {
-    std::random_device rseed;
-    std::mt19937 rng(rseed());
-    std::uniform_int_distribution<int> dist(-MAX_STEP,MAX_STEP);
-    return dist(rng);
+    srand(time(0));
+    return rand() % MAX_STEP;
 }
 
 void Person::move()
@@ -24,7 +26,25 @@ void Person::move()
     {
         xpos += GetRandomStep();
         ypos += GetRandomStep();
+    }else{
+        xpos -= 1;
+        ypos -= 1;
     }
+}
+
+void Person::CheckStatus()
+{
+    if(alive)
+    {
+        if(infected && days_infected < 14){
+            days_infected++;
+        }else{
+            days_infected = 0;
+            immune = true;
+        }
+        move();
+    }
+
 }
 
 #endif
