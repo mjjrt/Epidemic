@@ -1,0 +1,73 @@
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /Library/Developer/CommandLineTools/usr/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+ld: library not found for -lc++
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /Library/Developer/CommandLineTools/usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+ld: library not found for -lSystem
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+Determining if the function sgemm_ exists failed with the following output:
+Change Dir: /Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/bin/gmake -f Makefile cmTC_aa9e8/fast && /usr/local/bin/gmake  -f CMakeFiles/cmTC_aa9e8.dir/build.make CMakeFiles/cmTC_aa9e8.dir/build
+gmake[1]: Entering directory '/Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_aa9e8.dir/CheckFunctionExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.6 -MD -MT CMakeFiles/cmTC_aa9e8.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_aa9e8.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_aa9e8.dir/CheckFunctionExists.c.o -c /usr/local/Cellar/cmake/3.22.2/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_aa9e8
+/usr/local/Cellar/cmake/3.22.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aa9e8.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgemm_ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.6 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_aa9e8.dir/CheckFunctionExists.c.o -o cmTC_aa9e8 
+Undefined symbols for architecture x86_64:
+  "_sgemm_", referenced from:
+      _main in CheckFunctionExists.c.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+gmake[1]: *** [CMakeFiles/cmTC_aa9e8.dir/build.make:100: cmTC_aa9e8] Error 1
+gmake[1]: Leaving directory '/Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_aa9e8/fast] Error 2
+
+
+
+Determining if the __fbufsize exist failed with the following output:
+Change Dir: /Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/bin/gmake -f Makefile cmTC_5f309/fast && /usr/local/bin/gmake  -f CMakeFiles/cmTC_5f309.dir/build.make CMakeFiles/cmTC_5f309.dir/build
+gmake[1]: Entering directory '/Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5f309.dir/CheckSymbolExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.6 -MD -MT CMakeFiles/cmTC_5f309.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_5f309.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_5f309.dir/CheckSymbolExists.c.o -c /Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: 'stdio_ext.h' file not found
+#include <stdio_ext.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+gmake[1]: *** [CMakeFiles/cmTC_5f309.dir/build.make:79: CMakeFiles/cmTC_5f309.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory '/Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_5f309/fast] Error 2
+
+
+File /Users/william/dev/projects/Epidemic/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdio_ext.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef __fbufsize
+  return ((int*)(&__fbufsize))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
