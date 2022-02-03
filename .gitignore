@@ -1,7 +1,7 @@
 # Prerequisites
 *.d
 .DS_Store
-*.vscode
+**.vscode
 .vscode
 
 # Compiled Object files
@@ -33,9 +33,11 @@
 *.exe
 *.out
 *.app
+**/build
+epidemic
 main
 
 # Data Files
-*.csv
+**.csv
 *.json
 
