@@ -37,6 +37,18 @@ Epidemic depends on *[lava/matplotlib-cpp](https://github.com/lava/matplotlib-cp
 If you do not whish to plot the output, you can export the data in ParaView-compatible `.csv.NUM_STEP` files (where NUM_STEP is a running index).
 Uncomment the `#define CSVOUTPUT` and comment out the `#define ANIMATION` guards in the `src/Simulation.cpp` file to enable CSV-only output.
 
+Build with CMake inside a `build` directory.
+### For macOS:
+    git clone https://github.com/mjjrt/Epidemic
+    cd Epidemic
+    mkdir build && cd build
+    cmake ..
+    cmake --build .
+    
+    ./epidemic 100 1000
+### Linux/Windows 
+    TBD.
+
 ## TODO
 - Implement infection susceptibility
 - Faster Check Loops
