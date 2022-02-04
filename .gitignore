@@ -44,6 +44,7 @@ main
 # Build and Data directories
 **/build
 **/data
-data
+**data
+data/
 **/.DS_Store
 src/.DS_Store
