@@ -6,7 +6,7 @@
 #define PERSON_CPP_
 
 #include <random>
-#include <ctime>
+#include <chrono>
 
 #include "Person.h"
 
