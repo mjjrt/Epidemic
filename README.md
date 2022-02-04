@@ -51,6 +51,9 @@ Build with CMake inside a `build` directory.
 ### Linux/Windows 
     TBD.
 
+## Known Bugs
+- The `matplotlibcpp.h` dependency seems to have a bug in the `plt::legend()` template function. Therefore, it is not possible to fix the legend to one place without restructuring the image. That's why the plot looks so off-center.
+
 ## TODO
 - Implement infection susceptibility
 - Faster Check Loops
