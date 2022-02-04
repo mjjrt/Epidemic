@@ -12,12 +12,15 @@
 #include "Simulation.h"
 #include "Plotting.h"
 
-#define RISK_DIST 10   // Distance on which infection is possible
+#define RISK_DIST 1.5   // Distance on which infection is possible
 #define INF_RISK 20    // Risk of infection on contact, e.g. 30 = 30% Risk
 #define INIT_INFECTED 100 // Initially infected persons
 
+
+
 void Simulation::RunSimulation()
 {
+    // Initially Infected Persons
     for (size_t i = 0; i < INIT_INFECTED; i++)
     {
         people[i].infected = true;
@@ -25,9 +28,29 @@ void Simulation::RunSimulation()
     NumInfected = INIT_INFECTED;
     NumImmune = 0;
 
+    // Vectors for Plotting
+    std::vector<double> all_xpos, all_ypos; 
+    std::vector<double> xpos_alive, ypos_alive;
+    std::vector<double> xpos_dead, ypos_dead;
+    std::vector<double> xpos_infected, ypos_infected;
+    std::vector<double> xpos_immune, ypos_immune;
+
+
+    plt::figure_size(1200, 1200);
+    plt::title("Epidemic Simulation");
+    plt::xlim(-10, 1100);
+    plt::ylim(-10, 1100);
+
+    plt::Plot plotalive("Alive", "bo");
+    plt::Plot plotinfected("Infected", "ro");
+    plt::Plot plotimmune("Immune", "go");
+    plt::Plot plotdead("Dead", "ko");
+    //plt::legend("upper right", {0.5, 0, 0.5, 0});
+    plt::legend();
+
     for (int i = 0; i < n_timesteps; i++)
     {
-        CheckStatus();
+        CheckNumbers();
 
         if (NumInfected < int(n_people))
         {
@@ -35,7 +58,6 @@ void Simulation::RunSimulation()
             {
                 people[j].CheckPersonalStatus();
                 CheckProximity(people[j], j);
-                people[j].move();
             }
             /*std::cout << "Step " << i 
                                     << "\t Infected: " << NumInfected 
@@ -47,9 +69,15 @@ void Simulation::RunSimulation()
         }
 
     //WriteToCSV(i);
-    PlotTimestep(people);
+    PlotTimestep(people, xpos_infected, ypos_infected, xpos_immune, ypos_immune, xpos_dead, ypos_dead, xpos_alive, ypos_alive);
+    plotalive.update(xpos_alive, ypos_alive);
+    plotinfected.update(xpos_infected, ypos_infected);
+    plotimmune.update(xpos_immune, ypos_immune);
+    plotdead.update(xpos_dead, ypos_dead);
+    plt::pause(0.25);
 
     }
+    plt::show();
     std::cout << "Finished Simulation" << std::endl;
 }
 
@@ -58,13 +86,13 @@ void Simulation::CheckProximity(Person &p, size_t index)
 {
     for (size_t i = 0; i < people.size(); i++)
     {
-        if (i != index)
+        if (p.alive && i != index)
         {
             double xdist = p.xpos - people[i].xpos;
             double ydist = p.ypos - people[i].ypos;
             double dist = sqrt(xdist*xdist + ydist*ydist);
 
-            if (dist <= RISK_DIST && people[i].infected == true && p.immune == false)
+            if (people[i].alive && dist <= RISK_DIST && people[i].infected == true && p.immune == false)
             {
                 if(rand()%100 <= INF_RISK)
                 {
@@ -73,11 +101,12 @@ void Simulation::CheckProximity(Person &p, size_t index)
 //            std::cout << "Person " << index << " is too close to infected Person " << i << " and is now infected\n";
             }
         } // i!=index
+        break;
     } // Check Prox Loop
 
 }
 
-void Simulation::CheckStatus()
+void Simulation::CheckNumbers()
 {
     NumInfected = 0;
     NumImmune = 0;

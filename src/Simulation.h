@@ -35,7 +35,7 @@ public:
 
     void RunSimulation();
     void CheckProximity(Person &p, size_t index);
-    void CheckStatus();
+    void CheckNumbers();
     void WriteToCSV(int step);
 };
 

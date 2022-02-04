@@ -12,9 +12,14 @@ struct Person
     bool immune; // 1 if true;
     int days_infected = 0;
 
-    Person() : alive(1), infected(0), immune(0), days_infected(0), xpos(rand()%1000), ypos(rand()%1000){};
+    Person() : alive(true), infected(false), immune(false), days_infected(0), xpos(rand()%1000), ypos(rand()%1000){};
     //Person(){};
 
+private:
+    Person(const Person&);
+    Person& operator=(const Person&);
+
+public:
     // Position
     double xpos = rand()%1000;
     double ypos = rand()%1000;

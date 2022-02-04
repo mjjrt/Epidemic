@@ -1,6 +1,5 @@
 # Prerequisites
 *.d
-.DS_Store
 **.vscode
 .vscode
 
@@ -38,11 +37,13 @@ main
 
 # Data Files
 **.csv
+**/.csv*
 *.json
 *.txt
 
 # Build and Data directories
 **/build
 **/data
+data
 **/.DS_Store
 src/.DS_Store
