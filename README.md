@@ -6,6 +6,7 @@ It is implemented in C++ and is not to be used as representing _real_ epidemics.
 ## How it works
 
 The Simulation spawns a number of People with common attributes:
+
     struct Person
     {
         // Status
@@ -13,10 +14,9 @@ The Simulation spawns a number of People with common attributes:
         bool infected; // 1 if true
         bool immune; // 1 if true;
         int days_infected = 0;
-
+        
         Person() : alive(true), infected(false), immune(false), days_infected(0), xpos(rand()%1000), ypos(rand()%1000){};
-
-    public:
+        
         // Position
         double xpos = rand()%1000;
         double ypos = rand()%1000;
