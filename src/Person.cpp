@@ -12,7 +12,7 @@
 
 #define SIM_HEIGHT 1000
 #define SIM_WIDTH 1000
-#define MAX_STEP 10
+#define MAX_STEP 20
 
 double GetRandomStep()
 {
@@ -29,15 +29,15 @@ void Person::move()
     {
         xpos += GetRandomStep();
         ypos += GetRandomStep();
-        }
-    else if(xpos > SIM_WIDTH-MAX_STEP || xpos < 0+MAX_STEP)
+    }
+    else if(xpos >= SIM_WIDTH-MAX_STEP || xpos <= 0+MAX_STEP)
     {
             // Move Backwards
-            xpos = rand()%MAX_STEP;
+            xpos = GetRandomStep();
     }
-    else if(ypos > SIM_WIDTH-MAX_STEP || ypos < 0+MAX_STEP)
+    else if(ypos >= SIM_WIDTH-MAX_STEP || ypos <= 0+MAX_STEP)
     {
-        ypos = rand()%MAX_STEP;
+        ypos = GetRandomStep();
     }
 }
 
@@ -46,23 +46,27 @@ void Person::CheckPersonalStatus()
 {
     if(alive)
     {
-        if(infected && rand()%100 < 10){
+
+            if(infected && rand()%100 < 10)
+            {
                 alive = false;
                 move();
-        }
-        if(infected && days_infected <= 14){
-            days_infected++;
-            move();
-        }else if(infected && days_infected > 14){
-            days_infected = 0;
-            infected = false;
-            immune = true;
-            move();
-        }
-    }else{
-        return;
-    }
-    return;
+            }
+            if(infected && days_infected <= 14)
+            {
+                days_infected++;
+                move();
+            }
+            else if(infected && days_infected > 14)
+            {
+                days_infected = 0;
+                infected = false;
+                immune = true;
+                move();
+            }
+
+    }else return;
 }
+
 
 #endif

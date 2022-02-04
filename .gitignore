@@ -33,11 +33,16 @@
 *.exe
 *.out
 *.app
-**/build
 epidemic
 main
 
 # Data Files
 **.csv
 *.json
+*.txt
 
+# Build and Data directories
+**/build
+**/data
+**/.DS_Store
+src/.DS_Store

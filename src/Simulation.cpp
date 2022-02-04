@@ -10,9 +10,10 @@
 
 
 #include "Simulation.h"
+#include "Plotting.h"
 
 #define RISK_DIST 10   // Distance on which infection is possible
-#define INF_RISK 80    // Risk of infection on contact, e.g. 30 = 30% Risk
+#define INF_RISK 20    // Risk of infection on contact, e.g. 30 = 30% Risk
 #define INIT_INFECTED 100 // Initially infected persons
 
 void Simulation::RunSimulation()
@@ -45,7 +46,8 @@ void Simulation::RunSimulation()
             break;
         }
 
-    WriteToCSV(i);
+    //WriteToCSV(i);
+    PlotTimestep(people);
 
     }
     std::cout << "Finished Simulation" << std::endl;
@@ -64,7 +66,7 @@ void Simulation::CheckProximity(Person &p, size_t index)
 
             if (dist <= RISK_DIST && people[i].infected == true && p.immune == false)
             {
-                if(rand()%10 <= 10)
+                if(rand()%100 <= INF_RISK)
                 {
                     p.infected = true;
                 }
@@ -82,7 +84,8 @@ void Simulation::CheckStatus()
     NumDead = 0;
     for (size_t i = 0; i < people.size(); i++)
     {
-        if(people[i].alive){
+        if(people[i].alive)
+        {
             if(people[i].infected)
                 NumInfected++;
             if(people[i].immune)

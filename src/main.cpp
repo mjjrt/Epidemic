@@ -2,7 +2,6 @@
 #include <cmath>
 #include <cstdlib>
 
-//#include <matplot/matplot.h>
 
 #include "Person.h"
 #include "Simulation.h"
