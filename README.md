@@ -30,6 +30,8 @@ For each timestep, there is a chance `SPONT_INF` of spontaneous infection. If th
 
 The simulation is started from the command line by invoking `./epidemic <Number of Timesteps> <Size of initial population>`, e.g.: `./epidemic 100 1000`.
 
+![Simulation Running](sim.png)
+
 ## Building
 
 Epidemic depends on *[lava/matplotlib-cpp](https://github.com/lava/matplotlib-cpp)* for building. See the instructions and installation requirements there.
