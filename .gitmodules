@@ -1,0 +1,4 @@
+[submodule "include/matplotlib-cpp"]
+	path = include/matplotlib-cpp
+	url = https://github.com/lava/matplotlib-cpp
+	ignore = dirty
