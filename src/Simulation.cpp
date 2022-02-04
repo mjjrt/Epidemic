@@ -1,3 +1,6 @@
+#define ANIMATION
+//#define CSVOUTPUT
+
 
 #include <iostream>
 #include <fstream>
@@ -10,16 +13,19 @@
 
 
 #include "Simulation.h"
+
+#ifdef ANIMATION
 #include "Plotting.h"
+#endif
 
 #define RISK_DIST 1.5   // Distance on which infection is possible
 #define INF_RISK 20    // Risk of infection on contact, e.g. 30 = 30% Risk
 #define INIT_INFECTED 100 // Initially infected persons
 
 
-
 void Simulation::RunSimulation()
 {
+    #ifdef ANIMATION
     // Initially Infected Persons
     for (size_t i = 0; i < INIT_INFECTED; i++)
     {
@@ -79,6 +85,44 @@ void Simulation::RunSimulation()
     }
     plt::show();
     std::cout << "Finished Simulation" << std::endl;
+    #endif
+
+    #ifdef CSVOUTPUT
+        // Initially Infected Persons
+    for (size_t i = 0; i < INIT_INFECTED; i++)
+    {
+        people[i].infected = true;
+    }
+    NumInfected = INIT_INFECTED;
+    NumImmune = 0;
+
+
+    for (int i = 0; i < n_timesteps; i++)
+    {
+        CheckNumbers();
+
+        if (NumInfected < int(n_people))
+        {
+            for (size_t j = 0; j < people.size(); j++)
+            {
+                people[j].CheckPersonalStatus();
+                CheckProximity(people[j], j);
+            }
+            /*std::cout << "Step " << i 
+                                    << "\t Infected: " << NumInfected 
+                                    << "\t Immune: "<< NumImmune 
+                                    << "\t Dead: " << NumDead << '\n';*/
+        } else {
+            std::cout << "The whole population is infected \n";
+            break;
+        }
+
+    WriteToCSV(i);
+    }
+    plt::show();
+    std::cout << "Finished Simulation" << std::endl;
+    #endif
+
 }
 
 
