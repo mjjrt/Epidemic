@@ -18,22 +18,23 @@ void PlotTimestep(
     std::vector<double> &xpos_infected, std::vector<double> &ypos_infected,
     std::vector<double> &xpos_immune, std::vector<double> &ypos_immune,
     std::vector<double> &xpos_dead, std::vector<double> &ypos_dead,
-    std::vector<double> &xpos_alive, std::vector<double> &ypos_alive) {
+    std::vector<double> &xpos_alive, std::vector<double> &ypos_alive) 
+{
+  xpos_infected.clear();
+  ypos_infected.clear();
+  xpos_immune.clear();
+  ypos_immune.clear();
+  xpos_dead.clear();
+  ypos_dead.clear();
+  xpos_alive.clear();
+  ypos_alive.clear();
 
-  xpos_infected = {0};
-  ypos_infected = {0};
-  xpos_immune = {0};
-  ypos_immune = {0};
-  xpos_dead = {0};
-  ypos_dead = {0};
-  xpos_alive = {0};
-  ypos_alive = {0};
   for (size_t i = 0; i < p.size(); i++) {
     if (not p[i].alive) {
       xpos_dead.push_back(p[i].xpos);
       ypos_dead.push_back(p[i].ypos);
     } // dead
-    else if (p[i].alive == true) {
+    else{// if (p[i].alive) {
       if (p[i].infected) {
         xpos_infected.push_back(p[i].xpos);
         ypos_infected.push_back(p[i].ypos);

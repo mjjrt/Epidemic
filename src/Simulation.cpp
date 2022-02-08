@@ -55,10 +55,6 @@ void Simulation::RunSimulation() {
         people[j].CheckPersonalStatus();
         CheckProximity(people[j], j);
       }
-      /*std::cout << "Step " << i
-                              << "\t Infected: " << NumInfected
-                              << "\t Immune: "<< NumImmune
-                              << "\t Dead: " << NumDead << '\n';*/
     } else {
       std::cout << "The whole population is infected \n";
       break;
@@ -104,7 +100,6 @@ void Simulation::RunSimulation() {
 
     WriteToCSV(i);
   }
-  plt::show();
   std::cout << "Finished Simulation" << std::endl;
 #endif
 }
