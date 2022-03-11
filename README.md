@@ -40,7 +40,11 @@ If you do not whish to plot the output, you can export the data in ParaView-comp
 Uncomment the `#define CSVOUTPUT` and comment out the `#define ANIMATION` guards in the `src/Simulation.cpp` file to enable CSV-only output.
 
 Build with CMake inside a `build` directory.
-### For macOS:
+### Dependenies
+    python
+    matplotlib
+  
+### For Linux and macOS:
     git clone https://github.com/mjjrt/Epidemic
     cd Epidemic
     mkdir build && cd build
@@ -48,7 +52,7 @@ Build with CMake inside a `build` directory.
     cmake --build .
     
     ./epidemic 100 1000
-### Linux/Windows 
+### Windows 
     TBD.
 
 ## Known Bugs
