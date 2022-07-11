@@ -28,7 +28,11 @@ Each Person gets a random starting point, from which they move in a random walk 
 If a person gets too close to an infected person, they get infected.
 For each timestep, there is a chance `SPONT_INF` of spontaneous infection. If the person is infected for more than 14 timesteps (days), they get immune; if they are infected, they can also die with a chance of `LETALITY`.
 
-The simulation is started from the command line by invoking `./epidemic <Number of Timesteps> <Size of initial population>`, e.g.: `./epidemic 100 1000`.
+The simulation is started from the command line by invoking 
+
+    ./epidemic <Number of Timesteps> <Size of initial population>
+    
+e.g.: `./epidemic 100 1000`.
 
 ![Simulation Running](sim.png)
 
